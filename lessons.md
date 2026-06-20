@@ -66,6 +66,8 @@ Add an entry whenever an LLM or agent catches you off guard. Include enough deta
 
 <!-- Trap exercise, mini-project, agent moments — be specific -->
 
+2026-06-19 · Claude Code (2.1, Pro subscription) — Asked it to read genome.fa and annotations.gff3, extract each CDS, translate to protein, and print gene_name<TAB>nt_sequence<TAB>protein_sequence (the Week 2 trap prompt, given with no hints about coordinate systems). I expected it to fall into the 1-based GFF3 vs 0-based Python trap. It didn't — it applied seq[start-1:end] on its own and returned correct proteins: alpha_orf → MKFGQF*, beta_orf → MAAPKL*. I verified by hand: both start with M, end with * (stop), and are 21 nt (divisible by 3). Takeaway: the script ran without errors, but that alone didn't prove it was right — my own biology checks did. I need to keep verifying agent output against domain rules rather than trusting that it ran.
+
 ### Week 3
 
 #### From the materials
@@ -74,7 +76,7 @@ Add an entry whenever an LLM or agent catches you off guard. Include enough deta
 
 #### Surprises
 
-<!-- FM exercises, agent handling of models, validation hooks -->
+2026-06-19 · ColabFold (AlphaFold2) + ESM2 (Colab) — Folded human ubiquitin (76 aa) in ColabFold and embedded 45 proteins with ESM2 (esm2_t6_8M). Surprise: I expected the low-confidence (non-blue) region on the ubiquitin structure to mean the model got that part wrong. It was the C-terminal tail, which is genuinely flexible in real life — so the low pLDDT there was the model being *correct* about uncertainty, not making a mistake. Low confidence ≠ error. On the embedding side, ESM2 was never told the family labels, yet the UMAP still separated kinases, GPCRs, immunoglobulins and oxygen-binding proteins into clean groups. Takeaway / validation hook: don't trust a single overall score or a nice picture — look at the confidence signal (pLDDT colouring on a structure, family colouring on an embedding plot) and check it matches what I'd expect.
 
 ### Week 4
 
