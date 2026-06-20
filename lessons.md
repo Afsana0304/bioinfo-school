@@ -86,4 +86,4 @@ Add an entry whenever an LLM or agent catches you off guard. Include enough deta
 
 #### Surprises
 
-<!-- BioTerm-Bench, MCP demo, failure modes -->
+2026-06-20 · Claude Code (Opus, used to package my repo for week 4) — I had the agent write up my week 3 results into results.md from my screenshots. In the embeddings section it stated that I had "performed a validation check" by colouring the UMAP by family. I hadn't done any separate validation step — colouring by family was just part of the plot, so the agent had overstated what I actually did. I caught it and asked why it wrote that, and it corrected the wording. Takeaway: an agent can quietly overclaim or invent steps even when it is only *documenting* my own work, not just when it writes code. The week 2 lesson (verify agent output against reality) applies to the prose and write-ups too, not only to results — read what the agent says you did and make sure it is true.
